@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GloomManager.Data.Models
 {
-    class Enemy : EntityBase
+    public class Enemy : EntityBase
     {
         public Stats BaseStats { get; set; }
         [Required]

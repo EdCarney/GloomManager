@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GloomManager.Data.Services
 {
-    class BaseRepo<T> : IRepo<T>
+    public class BaseRepo<T> : IRepo<T>
     {
         public int Add(T entity)
         {

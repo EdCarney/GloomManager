@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GloomManager.Data.Models
 {
-    class EntityBase
+    public class EntityBase
     {
         [Key]
         public int Id { get; set; }

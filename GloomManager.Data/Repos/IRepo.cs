@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GloomManager.Data.Repos
 {
-    interface IRepo<T>
+    public interface IRepo<T>
     {
         int Add(T entity);
         int AddRange(IEnumerable<T> entities);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GloomManager.Data.Models
 {
-    class Stats
+    public class Stats
     {
         [Display(Name = "Health")]
         [Range(1, 50)]

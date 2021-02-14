@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GloomManager.Data.Services
 {
-    class InMemoryEnemyManager : IEnemyManager
+    public class InMemoryEnemyManager : IEnemyManager
     {
         private List<Enemy> enemies;
 

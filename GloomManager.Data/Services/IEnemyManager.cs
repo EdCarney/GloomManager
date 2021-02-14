@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GloomManager.Data.Services
 {
-    interface IEnemyManager : IRepo<Enemy>
+    public interface IEnemyManager : IRepo<Enemy>
     {
         IEnumerable<Enemy> SearchName(string name);
     }
