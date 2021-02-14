@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GloomManager.Web", "GloomManager.Web\GloomManager.Web.csproj", "{AE5FD7A2-E059-42BA-91D8-7E7BCE454515}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GloomManager.Data", "GloomManager.Data\GloomManager.Data.csproj", "{75FF428B-72E4-48C7-9646-FA396ABC27A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE5FD7A2-E059-42BA-91D8-7E7BCE454515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE5FD7A2-E059-42BA-91D8-7E7BCE454515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE5FD7A2-E059-42BA-91D8-7E7BCE454515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE5FD7A2-E059-42BA-91D8-7E7BCE454515}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75FF428B-72E4-48C7-9646-FA396ABC27A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75FF428B-72E4-48C7-9646-FA396ABC27A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75FF428B-72E4-48C7-9646-FA396ABC27A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75FF428B-72E4-48C7-9646-FA396ABC27A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E11A199-CEA4-4DE8-BFC4-70898D51FD0D}
+	EndGlobalSection
+EndGlobal
