@@ -115,5 +115,13 @@ namespace GloomManager.Data.Services
                    && e.Eliteness == EnemyEliteness.Standard
                    select e;
         }
+
+        public IEnumerable<Enemy> GetUniqueEnemiesByName(string name)
+        {
+            var uniqueEnemies = GetUniqueEnemies();
+            return from e in uniqueEnemies
+                   where e.Name.ToLower().Contains(name.ToLower())
+                   select e;
+        }
     }
 }

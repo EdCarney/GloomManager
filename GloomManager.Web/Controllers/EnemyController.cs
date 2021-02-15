@@ -23,10 +23,11 @@ namespace GloomManager.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string searchName)
         {
-            var model = enemyManager.GetUniqueEnemies();
+            var model = enemyManager.GetUniqueEnemiesByName(searchName ?? "");
             var viewModel = mapper.Map<List<EnemyViewModel>>(model);
+            TempData["SearchName"] = searchName;
             return View(viewModel);
         }
 

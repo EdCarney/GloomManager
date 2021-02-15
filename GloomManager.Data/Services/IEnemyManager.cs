@@ -12,6 +12,7 @@ namespace GloomManager.Data.Services
     {
         IEnumerable<Enemy> GetEnemiesByName(string name);
         IEnumerable<Enemy> GetUniqueEnemies();
+        IEnumerable<Enemy> GetUniqueEnemiesByName(string name);
         Enemy GetEnemyByNameElitenessLevel(string name, EnemyEliteness eliteness, int level);
     }
 }

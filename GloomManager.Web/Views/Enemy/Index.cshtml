@@ -6,9 +6,23 @@
 
 <h1>Enemy Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input class="form-control"
+                   placeholder="Search term..."
+                   type="search"
+                   name="searchName"
+                   value="@(TempData["SearchName"] ?? "")" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -19,17 +33,18 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { name = item.Name }) |
-                @Html.ActionLink("Details", "Details", new { name = item.Name }) |
-                @Html.ActionLink("Delete", "Delete", new { name = item.Name })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { name = item.Name }) |
+                    @Html.ActionLink("Details", "Details", new { name = item.Name }) |
+                    @Html.ActionLink("Delete", "Delete", new { name = item.Name })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
