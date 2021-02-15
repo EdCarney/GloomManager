@@ -14,4 +14,8 @@
     <ProjectReference Include="..\GloomManager.Data\GloomManager.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\enemies\" />
+  </ItemGroup>
+
 </Project>

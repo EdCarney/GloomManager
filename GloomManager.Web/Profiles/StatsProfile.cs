@@ -12,8 +12,10 @@ namespace GloomManager.Web.Profiles
     {
         public StatsProfile()
         {
-            CreateMap<Stats, StatsViewModel>()
-                .ForMember();
+            CreateMap<Stats, StatsViewModel>();
+            CreateMap<Enemy, StatsViewModel>()
+                .ForMember(dest => dest.Type,
+                           opt => opt.MapFrom(src => src.Type.ToString()));
         }
     }
 }

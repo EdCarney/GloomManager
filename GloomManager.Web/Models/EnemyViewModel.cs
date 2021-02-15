@@ -8,8 +8,6 @@ namespace GloomManager.Web.Models
 {
     public class EnemyViewModel
     {
-        public int Id { get; set; }
-
         public StatsViewModel Stats { get; set; }
 
         [Required]
@@ -22,9 +20,6 @@ namespace GloomManager.Web.Models
 
         [Required]
         public string Eliteness { get; set; }
-
-        [Required]
-        public string Type { get; set; }
 
         [Display(Name = "Special Abilities")]
         public List<string> SpecialAbilities { get; set; }

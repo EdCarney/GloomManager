@@ -15,8 +15,6 @@ namespace GloomManager.Web.Profiles
             CreateMap<Enemy, EnemyViewModel>()
                 .ForMember(dest => dest.Eliteness,
                            opt => opt.MapFrom(src => src.Eliteness.ToString()))
-                .ForMember(dest => dest.Type,
-                           opt => opt.MapFrom(src => src.Type.ToString()))
                 .ForMember(dest => dest.Stats,
                            opt => opt.MapFrom(src => src.BaseStats));
         }
