@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace GloomManager.Web.Profiles
 {
-    public class StatsProfile : Profile
+    public class EnemyElitenessProfile : Profile
     {
-        public StatsProfile()
+        public EnemyElitenessProfile()
         {
-            CreateMap<Stats, StatsViewModel>()
-                .ForMember();
+            CreateMap<EnemyEliteness, EnemyElitenessViewModel>();
         }
     }
 }

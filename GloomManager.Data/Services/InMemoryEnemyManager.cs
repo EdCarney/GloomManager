@@ -20,25 +20,29 @@ namespace GloomManager.Data.Services
                 {
                     Id = 1, Name = "Bandit Archer", Eliteness = EnemyEliteness.Standard, Level = 0,
                     BaseStats = new Stats { TotalHealth = 4, BaseAttack = 2, BaseMovement = 2, BaseRange = 3 },
-                    SpecialAbilities = new List<string>()
+                    SpecialAbilities = new List<string>(),
+                    Type = EnemyType.Archer
                 },
                 new Enemy
                 {
                     Id = 2, Name = "Bandit Archer", Eliteness = EnemyEliteness.Elite, Level = 0,
                     BaseStats = new Stats { TotalHealth = 6, BaseAttack = 3, BaseMovement = 2, BaseRange = 3 },
-                    SpecialAbilities = new List<string>()
+                    SpecialAbilities = new List<string>(),
+                    Type = EnemyType.Archer
                 },
                 new Enemy
                 {
                     Id = 3, Name = "Living Bones", Eliteness = EnemyEliteness.Standard, Level = 0,
                     BaseStats = new Stats { TotalHealth = 3, BaseAttack = 1, BaseMovement = 2 },
-                    SpecialAbilities = new List<string> { "Can target two enemies" }
+                    SpecialAbilities = new List<string> { "Can target two enemies" },
+                    Type = EnemyType.Undead
                 },
                 new Enemy
                 {
                     Id = 4, Name = "Living Bones", Eliteness = EnemyEliteness.Elite, Level = 0,
                     BaseStats = new Stats { TotalHealth = 6, BaseAttack = 2, BaseMovement = 4 },
-                    SpecialAbilities = new List<string> { "Can target two enemies" }
+                    SpecialAbilities = new List<string> { "Can target two enemies" },
+                    Type = EnemyType.Undead
                 }
             };
             #endregion
@@ -83,11 +87,32 @@ namespace GloomManager.Data.Services
             return 1;
         }
 
-        public IEnumerable<Enemy> SearchName(string name)
+        public IEnumerable<Enemy> GetEnemiesByName(string name)
         {
+            if (name is null)
+                return null;
             return from e in enemies
                    where e.Name.ToLower().Contains(name.ToLower())
                    orderby e.Name
+                   select e;
+        }
+
+        public Enemy GetEnemyByNameElitenessLevel(string name, EnemyEliteness eliteness, int level)
+        {
+            if (name is null || level < 0)
+                return null;
+            return (from e in enemies
+                    where e.Name.ToLower().Contains(name.ToLower())
+                    && e.Eliteness == eliteness
+                    && e.Level == level
+                    select e).SingleOrDefault();
+        }
+
+        public IEnumerable<Enemy> GetUniqueEnemies()
+        {
+            return from e in enemies
+                   where e.Level == 0
+                   && e.Eliteness == EnemyEliteness.Standard
                    select e;
         }
     }

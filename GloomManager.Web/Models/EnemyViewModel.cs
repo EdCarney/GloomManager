@@ -9,6 +9,9 @@ namespace GloomManager.Web.Models
     public class EnemyViewModel
     {
         public int Id { get; set; }
+
+        public StatsViewModel Stats { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }

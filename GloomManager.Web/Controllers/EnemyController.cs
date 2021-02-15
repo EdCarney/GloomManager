@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GloomManager.Data.Services;
 using GloomManager.Web.Models;
+using GloomManager.Core;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,17 +21,23 @@ namespace GloomManager.Web.Controllers
             this.enemyManager = enemyManager;
             this.mapper = mapper;
         }
+
+        [HttpGet]
         public IActionResult Index()
         {
-            var model = enemyManager.GetAll();
+            var model = enemyManager.GetUniqueEnemies();
             var viewModel = mapper.Map<List<EnemyViewModel>>(model);
             return View(viewModel);
         }
 
-        public IActionResult Details(int id)
+        [HttpGet]
+        public IActionResult Details(string name, int level = 0, EnemyElitenessViewModel eliteness = 0)
         {
-            var model = enemyManager.GetOne(id);
+            var elitenessModel = mapper.Map<EnemyEliteness>(eliteness);
+            var model = enemyManager.GetEnemyByNameElitenessLevel(name, elitenessModel, level);
             var viewModel = mapper.Map<EnemyViewModel>(model);
+            if (viewModel is null)
+                return View("NotFound");
             return View(viewModel);
         }
     }

@@ -10,6 +10,8 @@ namespace GloomManager.Data.Services
 {
     public interface IEnemyManager : IRepo<Enemy>
     {
-        IEnumerable<Enemy> SearchName(string name);
+        IEnumerable<Enemy> GetEnemiesByName(string name);
+        IEnumerable<Enemy> GetUniqueEnemies();
+        Enemy GetEnemyByNameElitenessLevel(string name, EnemyEliteness eliteness, int level);
     }
 }
