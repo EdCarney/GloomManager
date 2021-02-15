@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace GloomManager.Data.Models
+namespace GloomManager.Web.Models
 {
-    public class Enemy : EntityBase
+    public class EnemyViewModel
     {
-        public Stats BaseStats { get; set; }
+        public int Id { get; set; }
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
@@ -19,9 +18,12 @@ namespace GloomManager.Data.Models
         public int Level { get; set; }
 
         [Required]
-        public EnemyEliteness Eliteness { get; set; }
+        public string Eliteness { get; set; }
+
+        [Required]
+        public string Type { get; set; }
 
         [Display(Name = "Special Abilities")]
-        public List<string> SpecialAbilities { get; set; } = new List<string>();
+        public List<string> SpecialAbilities { get; set; }
     }
 }

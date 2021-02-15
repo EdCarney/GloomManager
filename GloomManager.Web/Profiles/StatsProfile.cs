@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace GloomManager.Data.Models
+namespace GloomManager.Web.Profiles
 {
-    public enum EnemyEliteness
+    public class StatsProfile
     {
-        Standard,
-        Elite
     }
 }

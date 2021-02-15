@@ -1,4 +1,4 @@
-﻿using GloomManager.Data.Models;
+﻿using GloomManager.Core;
 using GloomManager.Data.Repos;
 using System;
 using System.Collections.Generic;

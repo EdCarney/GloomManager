@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GloomManager.Data.Models
+namespace GloomManager.Core
 {
     public class EntityBase
     {

@@ -1,4 +1,4 @@
-﻿using GloomManager.Data.Models;
+﻿using GloomManager.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +19,14 @@ namespace GloomManager.Data.Services
                 new Enemy
                 {
                     Id = 1, Name = "Bandit Archer", Eliteness = EnemyEliteness.Standard, Level = 0,
-                    BaseStats = new Stats { TotalHealth = 4, BaseAttack = 2, BaseMovement = 2, BaseRange = 3 }
+                    BaseStats = new Stats { TotalHealth = 4, BaseAttack = 2, BaseMovement = 2, BaseRange = 3 },
+                    SpecialAbilities = new List<string>()
                 },
                 new Enemy
                 {
                     Id = 2, Name = "Bandit Archer", Eliteness = EnemyEliteness.Elite, Level = 0,
-                    BaseStats = new Stats { TotalHealth = 6, BaseAttack = 3, BaseMovement = 2, BaseRange = 3 }
+                    BaseStats = new Stats { TotalHealth = 6, BaseAttack = 3, BaseMovement = 2, BaseRange = 3 },
+                    SpecialAbilities = new List<string>()
                 },
                 new Enemy
                 {
