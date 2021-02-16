@@ -32,16 +32,44 @@ namespace GloomManager.Data.Services
                 },
                 new Enemy
                 {
-                    Id = 3, Name = "Living Bones", Eliteness = EnemyEliteness.Standard, Level = 0,
+                    Id = 3, Name = "Bandit Archer", Eliteness = EnemyEliteness.Standard, Level = 1,
+                    BaseStats = new Stats { TotalHealth = 5, BaseAttack = 2, BaseMovement = 2, BaseRange = 4 },
+                    SpecialAbilities = new List<string>(),
+                    Type = EnemyType.Archer
+                },
+                new Enemy
+                {
+                    Id = 4, Name = "Bandit Archer", Eliteness = EnemyEliteness.Elite, Level = 1,
+                    BaseStats = new Stats { TotalHealth = 7, BaseAttack = 3, BaseMovement = 2, BaseRange = 5 },
+                    SpecialAbilities = new List<string>(),
+                    Type = EnemyType.Archer
+                },
+                new Enemy
+                {
+                    Id = 5, Name = "Living Bones", Eliteness = EnemyEliteness.Standard, Level = 0,
                     BaseStats = new Stats { TotalHealth = 3, BaseAttack = 1, BaseMovement = 2 },
                     SpecialAbilities = new List<string> { "Can target two enemies" },
                     Type = EnemyType.Undead
                 },
                 new Enemy
                 {
-                    Id = 4, Name = "Living Bones", Eliteness = EnemyEliteness.Elite, Level = 0,
+                    Id = 6, Name = "Living Bones", Eliteness = EnemyEliteness.Elite, Level = 0,
                     BaseStats = new Stats { TotalHealth = 6, BaseAttack = 2, BaseMovement = 4 },
                     SpecialAbilities = new List<string> { "Can target two enemies" },
+                    Type = EnemyType.Undead
+                },
+                new Enemy
+                {
+                    Id = 7, Name = "Living Bones", Eliteness = EnemyEliteness.Standard, Level = 1,
+                    BaseStats = new Stats { TotalHealth = 5, BaseAttack = 1, BaseMovement = 3 },
+                    SpecialAbilities = new List<string> { "Can target two enemies" },
+                    Type = EnemyType.Undead
+                },
+                new Enemy
+                {
+                    Id = 8, Name = "Living Bones", Eliteness = EnemyEliteness.Elite, Level = 1,
+                    BaseStats = new Stats { TotalHealth = 6, BaseAttack = 2, BaseMovement = 4 },
+                    SpecialAbilities = new List<string> { "Can target three enemies", "Shield 1" },
                     Type = EnemyType.Undead
                 }
             };

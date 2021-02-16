@@ -1,43 +1,51 @@
 ﻿@model GloomManager.Web.Models.EnemyViewModel
 
 <div class="card">
-    <img style="width:225px;height:325px;"
-         src="~/images/enemies/@(Model.Name.ToLower().Replace(' ','-')).jpg"
-         alt="@Model.Name"
-         class="card-img-top">
-    <div class="card-header">Stats</div>
-    <div class="card-body">
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Stats.TotalHealth)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Stats.TotalHealth)
-            </dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Stats.BaseMovement)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Stats.BaseMovement)
-            </dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Stats.BaseAttack)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Stats.BaseAttack)
-            </dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Stats.BaseRange)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Stats.BaseRange)
-            </dd>
-        </dl>
+    <div class="row no-gutters">
+        <div class="col-auto">
+            <img style="width:225px;height:325px;"
+                 src="~/images/enemies/@(Model.Name.ToLower().Replace(' ','-')).jpg"
+                 alt="@Model.Name"
+                 class="img-fluid">
+        </div>
+    </div>
+    <div class="col">
+        <div class="card-block px-2">
+            <h4 class="card-title">Stats</h4>
+            <div class="card-text">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Stats.TotalHealth)
+                    </dt>
+                    <dd class="col-sm-2">
+                        @Html.DisplayFor(model => model.Stats.TotalHealth)
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Stats.BaseMovement)
+                    </dt>
+                    <dd class="col-sm-2">
+                        @Html.DisplayFor(model => model.Stats.BaseMovement)
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Stats.BaseAttack)
+                    </dt>
+                    <dd class="col-sm-2">
+                        @Html.DisplayFor(model => model.Stats.BaseAttack)
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Stats.BaseRange)
+                    </dt>
+                    <dd class="col-sm-2">
+                        @Html.DisplayFor(model => model.Stats.BaseRange)
+                    </dd>
+                </dl>
+            </div>
+        </div>
     </div>
 </div>
