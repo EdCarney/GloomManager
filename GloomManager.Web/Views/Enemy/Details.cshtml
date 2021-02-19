@@ -20,11 +20,11 @@
 
     <div class="form-row mb-3">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary" for="eliteness">
-                <input type="radio" name="eliteness" id="standard" autocomplete="off" value="standard" checked> Standard
+            <label class="btn btn-secondary" id="elitenessBtn-standard" for="eliteness">
+                <input type="radio" name="eliteness" id="elitenessInput-standard" autocomplete="off" value="standard"> Standard
             </label>
-            <label class="btn btn-secondary" for="eliteness">
-                <input type="radio" name="eliteness" id="elite" autocomplete="off" value="elite"> Elite
+            <label class="btn btn-secondary" id="elitenessBtn-elite" for="eliteness">
+                <input type="radio" name="eliteness" id="elitenessInput-elite" autocomplete="off" value="elite"> Elite
             </label>
         </div>
 
@@ -44,3 +44,17 @@
 <div>
     <a class="btn btn-info" asp-action="Index">Back to List</a>
 </div>
+
+<script>
+    let eliteness = '@Model.Eliteness.ToString()';
+    (function ($) {
+        if (eliteness.toLowerCase() === "elite") {
+            $("#elitenessBtn-elite").addClass("active");
+            $("#elitenessInput-elite").prop("checked", true);
+        }
+        else {
+            $("#elitenessBtn-standard").addClass("active");
+            $("#elitenessInput-standard").prop("checked", true);
+        }
+    })(jQuery)
+</script>
