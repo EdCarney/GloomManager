@@ -2,6 +2,7 @@ using GloomManager.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,7 +26,11 @@ namespace GloomManager.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
-            services.AddScoped<IEnemyManager, InMemoryEnemyManager>();
+            services.AddDbContext<GloomManagerDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("GloomManagerDb"));
+            });
+            services.AddScoped<IEnemyManager, SqlEnemyData>();
             services.AddControllersWithViews();
         }
 
