@@ -1,0 +1,164 @@
+
+@{
+    ViewData["Name"] = "Party Tools";
+}
+
+<div>
+    <h2>Party Level Settings</h2>
+</div>
+
+<div>
+    <div class="form-row my-3">
+        <div class="input-group col-md-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Player 1 Level</span>
+            </div>
+            <input type="number" name="level-player1" value="0" class="form-control" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group col-md-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Player 2 Level</span>
+            </div>
+            <input type="number" name="level-player2" value="0" class="form-control" aria-describedby="basic-addon1">
+        </div>
+    </div>
+
+    <div class="form-row my-3">
+        <div class="input-group col-md-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Player 3 Level</span>
+            </div>
+            <input type="number" name="level-player3" value="0" class="form-control" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group col-md-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Player 4 Level</span>
+            </div>
+            <input type="number" name="level-player4" value="0" class="form-control" aria-describedby="basic-addon1">
+        </div>
+    </div>
+</div>
+
+<div class="card" style="width:60%"">
+    <div class="card-block pl-4 pt-4">
+        <h4 class="card-title">Recommended Scenario Stats</h4>
+        <div class="card-text">
+            <dl class="row">
+                <dt class="col-sm-7">
+                    Scenario Level
+                </dt>
+                <dd class="col-sm-2" id="lvl-scen-rec">
+                    0
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-7">
+                    Monster Level
+                </dt>
+                <dd class="col-sm-2" id="lvl-mstr-rec">
+                    0
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-7">
+                    Gold Conversion
+                </dt>
+                <dd class="col-sm-2" id="gold-cnv-rec">
+                    2
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-7">
+                    Trap Damage
+                </dt>
+                <dd class="col-sm-2" id="trap-dmg-rec">
+                    2
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-7">
+                    Bonus Experience
+                </dt>
+                <dd class="col-sm-2" id="bonus-xp-rec">
+                    4
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    const levels = [0, 0, 0, 0];
+    const scenarioStats = [
+        { "ScenLevel": 0, "MstrLevel": 0, "GoldCnv": 2, "TrapDmg": 2, "BonusXp": 4},
+        { "ScenLevel": 1, "MstrLevel": 1, "GoldCnv": 2, "TrapDmg": 3, "BonusXp": 6},
+        { "ScenLevel": 2, "MstrLevel": 2, "GoldCnv": 3, "TrapDmg": 4, "BonusXp": 8},
+        { "ScenLevel": 3, "MstrLevel": 3, "GoldCnv": 3, "TrapDmg": 5, "BonusXp": 10},
+        { "ScenLevel": 4, "MstrLevel": 4, "GoldCnv": 4, "TrapDmg": 6, "BonusXp": 12},
+        { "ScenLevel": 5, "MstrLevel": 5, "GoldCnv": 4, "TrapDmg": 7, "BonusXp": 14},
+        { "ScenLevel": 6, "MstrLevel": 6, "GoldCnv": 5, "TrapDmg": 8, "BonusXp": 16},
+        { "ScenLevel": 7, "MstrLevel": 7, "GoldCnv": 6, "TrapDmg": 9, "BonusXp": 18},
+    ];
+
+    jQuery("input[name=level-player1]").change(function() {
+        levels[0] = parseInt(this.value);
+        RecalculateStats();
+    })
+
+    jQuery("input[name=level-player2]").change(function() {
+        levels[1] = parseInt(this.value);
+        RecalculateStats();
+    })
+
+    jQuery("input[name=level-player3]").change(function() {
+        levels[2] = parseInt(this.value);
+        RecalculateStats();
+    })
+
+    jQuery("input[name=level-player4]").change(function() {
+        levels[3] = parseInt(this.value);
+        RecalculateStats();
+    })
+
+    function RecalculateStats() {
+        levels.forEach(level => {
+            console.log(level);
+        });
+
+        let recScenarioLevel =  CalculateRecommendedScenarioLevel();
+        SetScenarioStats(recScenarioLevel);
+    }
+
+    /**
+     * Calculates the recommended scenario level for the party
+     * as the average level of the (non-zero level) party members
+     * divided by two, rounded up.
+     */
+    function CalculateRecommendedScenarioLevel() {
+        let totalLevel = 0;
+        levels.forEach(level => totalLevel += level);
+        let numNonzeroLevels = levels.filter(level => level > 0).length;
+        if (numNonzeroLevels > 0) {
+            let avgLevel = totalLevel / numNonzeroLevels;
+            return Math.ceil(avgLevel / 2);
+        }
+        else {
+            return 0;
+        }
+    }
+
+    function SetScenarioStats(scenarioLevel) {
+        let stats = scenarioStats.find(x => x["ScenLevel"] == scenarioLevel);
+        console.log(stats);
+        
+        jQuery("#lvl-scen-rec").text(stats["ScenLevel"]);
+        jQuery("#lvl-mstr-rec").text(stats["MstrLevel"]);
+        jQuery("#gold-cnv-rec").text(stats["GoldCnv"]);
+        jQuery("#trap-dmg-rec").text(stats["TrapDmg"]);
+        jQuery("#bonus-xp-rec").text(stats["BonusXp"]);
+    }
+    
+</script>
