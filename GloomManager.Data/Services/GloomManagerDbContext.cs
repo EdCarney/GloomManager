@@ -10,5 +10,7 @@ namespace GloomManager.Data.Services
             : base(options)
         { }
         public DbSet<Enemy> Enemies { get; set; }
+        public DbSet<SpecialAbility> SpecialAbilities { get; set; }
+        public DbSet<Stats> Stats { get; set; }
     }
 }
