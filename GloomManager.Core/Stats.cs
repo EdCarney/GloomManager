@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GloomManager.Core
 {
-    public class Stats
+    public class Stats : EntityBase
     {
         [Range(1, 50)]
         public int TotalHealth { get; set; }
