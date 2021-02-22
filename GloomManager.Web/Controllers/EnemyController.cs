@@ -41,5 +41,11 @@ namespace GloomManager.Web.Controllers
                 return View("NotFound");
             return View(viewModel);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
