@@ -24,6 +24,6 @@ namespace GloomManager.Core
         [Required]
         public EnemyType Type { get; set; }
 
-        public List<string> SpecialAbilities { get; set; }
+        public List<SpecialAbility> SpecialAbilities { get; set; }
     }
 }

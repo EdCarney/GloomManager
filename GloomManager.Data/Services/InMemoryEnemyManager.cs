@@ -20,56 +20,60 @@ namespace GloomManager.Data.Services
                 {
                     Id = 1, Name = "Bandit Archer", Eliteness = EnemyEliteness.Standard, Level = 0,
                     BaseStats = new Stats { TotalHealth = 4, BaseAttack = 2, BaseMovement = 2, BaseRange = 3 },
-                    SpecialAbilities = new List<string>(),
+                    SpecialAbilities = new List<SpecialAbility>(),
                     Type = EnemyType.Archer
                 },
                 new Enemy
                 {
                     Id = 2, Name = "Bandit Archer", Eliteness = EnemyEliteness.Elite, Level = 0,
                     BaseStats = new Stats { TotalHealth = 6, BaseAttack = 3, BaseMovement = 2, BaseRange = 3 },
-                    SpecialAbilities = new List<string>(),
+                    SpecialAbilities = new List<SpecialAbility>(),
                     Type = EnemyType.Archer
                 },
                 new Enemy
                 {
                     Id = 3, Name = "Bandit Archer", Eliteness = EnemyEliteness.Standard, Level = 1,
                     BaseStats = new Stats { TotalHealth = 5, BaseAttack = 2, BaseMovement = 2, BaseRange = 4 },
-                    SpecialAbilities = new List<string>(),
+                    SpecialAbilities = new List<SpecialAbility>(),
                     Type = EnemyType.Archer
                 },
                 new Enemy
                 {
                     Id = 4, Name = "Bandit Archer", Eliteness = EnemyEliteness.Elite, Level = 1,
                     BaseStats = new Stats { TotalHealth = 7, BaseAttack = 3, BaseMovement = 2, BaseRange = 5 },
-                    SpecialAbilities = new List<string>(),
+                    SpecialAbilities = new List<SpecialAbility>(),
                     Type = EnemyType.Archer
                 },
                 new Enemy
                 {
                     Id = 5, Name = "Living Bones", Eliteness = EnemyEliteness.Standard, Level = 0,
                     BaseStats = new Stats { TotalHealth = 3, BaseAttack = 1, BaseMovement = 2 },
-                    SpecialAbilities = new List<string> { "Can target two enemies" },
+                    SpecialAbilities = new List<SpecialAbility> { new SpecialAbility { Description = "Can target two enemies" }},
                     Type = EnemyType.Undead
                 },
                 new Enemy
                 {
                     Id = 6, Name = "Living Bones", Eliteness = EnemyEliteness.Elite, Level = 0,
                     BaseStats = new Stats { TotalHealth = 6, BaseAttack = 2, BaseMovement = 4 },
-                    SpecialAbilities = new List<string> { "Can target two enemies" },
+                    SpecialAbilities = new List<SpecialAbility> { new SpecialAbility { Description = "Can target two enemies" }},
                     Type = EnemyType.Undead
                 },
                 new Enemy
                 {
                     Id = 7, Name = "Living Bones", Eliteness = EnemyEliteness.Standard, Level = 1,
                     BaseStats = new Stats { TotalHealth = 5, BaseAttack = 1, BaseMovement = 3 },
-                    SpecialAbilities = new List<string> { "Can target two enemies" },
+                    SpecialAbilities = new List<SpecialAbility> { new SpecialAbility { Description = "Can target two enemies" }},
                     Type = EnemyType.Undead
                 },
                 new Enemy
                 {
                     Id = 8, Name = "Living Bones", Eliteness = EnemyEliteness.Elite, Level = 1,
                     BaseStats = new Stats { TotalHealth = 6, BaseAttack = 2, BaseMovement = 4 },
-                    SpecialAbilities = new List<string> { "Can target three enemies", "Shield 1" },
+                    SpecialAbilities = new List<SpecialAbility> 
+                    {
+                        new SpecialAbility { Description = "Can target three enemies" },
+                        new SpecialAbility { Description = "Shield 1" }
+                    },
                     Type = EnemyType.Undead
                 }
             };
