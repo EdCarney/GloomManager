@@ -45,7 +45,36 @@ namespace GloomManager.Web.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var model = new EnemyFormViewModel { Id = -1 };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(EnemyFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+            enemyManager.Add(model.Enemy);
+            return View("Index", "");
+        }
+
+        [HttpGet]
+        public IActionResult Update(int id = -1)
+        {
+            var model = new EnemyFormViewModel { Id = id };
+            model.Enemy = enemyManager.GetOne(id);
+            return View(model);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(EnemyFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+            return Index("");
         }
     }
 }

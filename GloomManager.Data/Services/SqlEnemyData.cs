@@ -57,7 +57,9 @@ namespace GloomManager.Data.Services
                    where e.Name.ToLower().Contains(name.ToLower())
                    && e.Eliteness == eliteness
                    && e.Level == level
-                   select e).SingleOrDefault();
+                   select e)
+                   .Include(e => e.BaseStats)
+                   .SingleOrDefault();
         }
 
         public Enemy GetOne(int id)
@@ -67,19 +69,22 @@ namespace GloomManager.Data.Services
 
         public IEnumerable<Enemy> GetUniqueEnemies()
         {
-            return from e in table
-                   where e.Level == 0
-                   && e.Eliteness == EnemyEliteness.Standard
-                   select e;
+            var enemies = GetAll();
+            var uniqueEnemies = new List<Enemy>();
+            foreach (var enemy in enemies)
+                if (uniqueEnemies.Find(e => e.Name == enemy.Name) == null)
+                    uniqueEnemies.Add(enemy);
+            return uniqueEnemies;
         }
 
         public IEnumerable<Enemy> GetUniqueEnemiesByName(string name)
         {
-            return from e in table
-                   where e.Level == 0
-                   && e.Eliteness == EnemyEliteness.Standard
-                   && e.Name.ToLower().Contains(name.ToLower())
-                   select e;
+            var enemies = GetEnemiesByName(name);
+            var uniqueEnemies = new List<Enemy>();
+            foreach (var enemy in enemies)
+                if (uniqueEnemies.Find(e => e.Name == enemy.Name) == null)
+                    uniqueEnemies.Add(enemy);
+            return uniqueEnemies;
         }
 
         public int Save(Enemy entity)
