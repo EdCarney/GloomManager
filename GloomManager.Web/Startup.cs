@@ -26,15 +26,10 @@ namespace GloomManager.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
-            services.AddDbContext<GloomManagerDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("GloomManagerDb"));
-            });
             services.AddScoped<IEnemyManager, SqlEnemyData>();
+            services.AddDbContext<GloomManagerDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("GloomManagerDb")));
             services.AddControllersWithViews();
-
-            services.AddDbContext<GloomManagerDataContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("GloomManagerDataContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
