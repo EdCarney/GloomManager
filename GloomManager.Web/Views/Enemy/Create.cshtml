@@ -51,27 +51,27 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Enemy.BaseStats.TotalHealth" class="control-label"></label>
-                    <input asp-for="Enemy.BaseStats.TotalHealth" class="form-control" />
-                    <span asp-validation-for="Enemy.BaseStats.TotalHealth" class="text-danger"></span>
+                    <label asp-for="Enemy.Stats.TotalHealth" class="control-label"></label>
+                    <input asp-for="Enemy.Stats.TotalHealth" class="form-control" />
+                    <span asp-validation-for="Enemy.Stats.TotalHealth" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Enemy.BaseStats.BaseAttack" class="control-label"></label>
-                    <input asp-for="Enemy.BaseStats.BaseAttack" class="form-control" />
-                    <span asp-validation-for="Enemy.BaseStats.BaseAttack" class="text-danger"></span>
+                    <label asp-for="Enemy.Stats.BaseAttack" class="control-label"></label>
+                    <input asp-for="Enemy.Stats.BaseAttack" class="form-control" />
+                    <span asp-validation-for="Enemy.Stats.BaseAttack" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Enemy.BaseStats.BaseMovement" class="control-label"></label>
-                    <input asp-for="Enemy.BaseStats.BaseMovement" class="form-control" />
-                    <span asp-validation-for="Enemy.BaseStats.BaseMovement" class="text-danger"></span>
+                    <label asp-for="Enemy.Stats.BaseMovement" class="control-label"></label>
+                    <input asp-for="Enemy.Stats.BaseMovement" class="form-control" />
+                    <span asp-validation-for="Enemy.Stats.BaseMovement" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Enemy.BaseStats.BaseRange" class="control-label"></label>
-                    <input asp-for="Enemy.BaseStats.BaseRange" class="form-control" />
-                    <span asp-validation-for="Enemy.BaseStats.BaseRange" class="text-danger"></span>
+                    <label asp-for="Enemy.Stats.BaseRange" class="control-label"></label>
+                    <input asp-for="Enemy.Stats.BaseRange" class="form-control" />
+                    <span asp-validation-for="Enemy.Stats.BaseRange" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
@@ -82,7 +82,7 @@
     </div>
 
     <div>
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="FullIndex">Back to List</a>
     </div>
 
 </body>

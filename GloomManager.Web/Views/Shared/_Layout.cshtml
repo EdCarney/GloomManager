@@ -23,6 +23,7 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Party Management
@@ -31,14 +32,26 @@
                                 <a class="nav-link dropdown-item" asp-area="" asp-controller="Party" asp-action="PartyTools">Party Scenario Tools</a>
                             </div>
                         </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Reference
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="nav-link dropdown-item" asp-area="" asp-controller="Enemy" asp-action="Index">Enemy Index</a>
+                                <a class="nav-link dropdown-item" asp-area="" asp-controller="Enemy" asp-action="UniqueIndex">Enemy Index</a>
                             </div>
                         </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="nav-link dropdown-item" asp-area="" asp-controller="Enemy" asp-action="Create">Create Enemy</a>
+                                <a class="nav-link dropdown-item" asp-area="" asp-controller="Enemy" asp-action="FullIndex">Edit Enemy</a>
+                            </div>
+                        </li>
+
                     </ul>
                 </div>
             </div>

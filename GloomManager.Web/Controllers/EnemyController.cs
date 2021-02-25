@@ -23,9 +23,26 @@ namespace GloomManager.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(string searchName)
+        public IActionResult UniqueIndex(string searchName)
         {
             var model = enemyManager.GetUniqueEnemiesByName(searchName ?? "");
+            var viewModel = new List<EnemyFormViewModel>();
+            foreach (var m in model)
+            {
+                viewModel.Add(new EnemyFormViewModel
+                {
+                    Id = m.Id,
+                    Enemy = mapper.Map<EnemyViewModel>(m)
+                });
+            }
+            TempData["SearchName"] = searchName;
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult FullIndex(string searchName)
+        {
+            var model = enemyManager.GetEnemiesByName(searchName ?? "");
             var viewModel = mapper.Map<List<EnemyViewModel>>(model);
             TempData["SearchName"] = searchName;
             return View(viewModel);
@@ -36,9 +53,10 @@ namespace GloomManager.Web.Controllers
         {
             var elitenessModel = mapper.Map<EnemyEliteness>(eliteness);
             var model = enemyManager.GetEnemyByNameElitenessLevel(name, elitenessModel, level);
-            var viewModel = mapper.Map<EnemyViewModel>(model);
-            if (viewModel is null)
+            if (model is null)
                 return View("NotFound");
+            var viewModel = mapper.Map<EnemyFormViewModel>(model);
+
             return View(viewModel);
         }
 
@@ -55,15 +73,16 @@ namespace GloomManager.Web.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            enemyManager.Add(model.Enemy);
-            return View("Index", "");
+            var domain = mapper.Map<Enemy>(model.Enemy);
+            enemyManager.Add(domain);
+            return View("FullIndex", "");
         }
 
         [HttpGet]
         public IActionResult Update(int id = -1)
         {
             var model = new EnemyFormViewModel { Id = id };
-            model.Enemy = enemyManager.GetOne(id);
+            model.Enemy = mapper.Map<EnemyViewModel>(enemyManager.GetOne(id));
             return View(model);
 
         }
@@ -74,7 +93,7 @@ namespace GloomManager.Web.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            return Index("");
+            return UniqueIndex("");
         }
     }
 }

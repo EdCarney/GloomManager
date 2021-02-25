@@ -10,6 +10,10 @@ namespace GloomManager.Web.Models
     {
         public StatsViewModel Stats { get; set; }
 
+        [Display(Name = "Enemy Type")]
+        [MaxLength(100)]
+        public string Type { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
@@ -20,6 +24,7 @@ namespace GloomManager.Web.Models
 
         [Required]
         public string Eliteness { get; set; }
+
 
         [Display(Name = "Special Abilities")]
         public List<string> SpecialAbilities { get; set; }

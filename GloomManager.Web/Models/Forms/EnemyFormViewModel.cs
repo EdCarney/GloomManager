@@ -4,9 +4,9 @@ using GloomManager.Web.Controllers;
 
 namespace GloomManager.Web.Models
 {
-    public class EnemyFormViewModel : BaseEntityFormViewModel<Enemy>
+    public class EnemyFormViewModel : BaseEntityFormViewModel<EnemyViewModel>
     {
-        public Enemy Enemy { get => Entity; set => Entity = value; }
+        public EnemyViewModel Enemy { get => Entity; set => Entity = value; }
 
         public string ActionName
         {
@@ -15,7 +15,7 @@ namespace GloomManager.Web.Models
 
         public EnemyFormViewModel()
         {
-            Enemy = new Enemy();
+            Enemy = new EnemyViewModel();
         }
     }
 }

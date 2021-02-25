@@ -8,9 +8,6 @@ namespace GloomManager.Web.Models
 {
     public class StatsViewModel
     {
-        [Display(Name = "Enemy Type")]
-        public string Type { get; set; }
-
         [Display(Name = "Health")]
         [Range(1, 50)]
         public int TotalHealth { get; set; }

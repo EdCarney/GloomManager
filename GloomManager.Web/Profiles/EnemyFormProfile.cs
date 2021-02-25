@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using GloomManager.Core;
 using GloomManager.Web.Models;
 using System;
@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace GloomManager.Web.Profiles
 {
-    public class StatsProfile : Profile
+    public class EnemyFormProfile : Profile
     {
-        public StatsProfile()
+        public EnemyFormProfile()
         {
-            CreateMap<Stats, StatsViewModel>()
+            CreateMap<Enemy, EnemyFormViewModel>()
+                .ForMember(dest => dest.Enemy,
+                           opt => opt.MapFrom(src => src))
                 .ReverseMap();
         }
     }

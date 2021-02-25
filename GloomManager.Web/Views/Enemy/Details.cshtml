@@ -1,4 +1,4 @@
-﻿@model GloomManager.Web.Models.EnemyViewModel
+﻿@model GloomManager.Web.Models.EnemyFormViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -6,9 +6,9 @@
 
 <div>
     <h2>
-        Level&nbsp;@Html.DisplayFor(model => model.Level) |
-        @Html.DisplayFor(model => model.Eliteness) |
-        @Html.DisplayFor(model => model.Name)
+        Level&nbsp;@Html.DisplayFor(model => model.Enemy.Level) |
+        @Html.DisplayFor(model => model.Enemy.Eliteness) |
+        @Html.DisplayFor(model => model.Enemy.Name)
     </h2>
 </div>
 
@@ -16,7 +16,7 @@
 
 @using (Html.BeginForm(FormMethod.Get))
 {
-    @Html.HiddenFor(model => model.Name)
+    @Html.HiddenFor(model => model.Enemy.Name)
 
     <div class="form-row mb-3">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -32,21 +32,23 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Level</span>
             </div>
-            <input type="number" name="Level" value="@Model.Level" class="form-control" aria-describedby="basic-addon1">
+            <input type="number" name="Level" value="@Model.Enemy.Level" class="form-control" aria-describedby="basic-addon1">
         </div>
 
         <input type="submit" value="Search" class="btn btn-primary" />
     </div>
 }
 
-<partial name="_StatDetails" model="Model" />
+<partial name="_StatDetails" model="Model.Enemy" />
+
 <br />
+
 <div>
-    <a class="btn btn-info" asp-action="Index">Back to List</a>
+    <a class="btn btn-info" asp-action="UniqueIndex">Back to List</a>
 </div>
 
 <script>
-    let eliteness = '@Model.Eliteness.ToString()';
+    let eliteness = '@Model.Enemy.Eliteness.ToString()';
     (function ($) {
         if (eliteness.toLowerCase() === "elite") {
             $("#elitenessBtn-elite").addClass("active");
