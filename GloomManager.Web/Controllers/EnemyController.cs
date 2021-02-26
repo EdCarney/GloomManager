@@ -40,10 +40,10 @@ namespace GloomManager.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult FullIndex(string searchName)
+        public IActionResult FullIndex(string searchName = "")
         {
             var model = enemyManager.GetEnemiesByName(searchName ?? "");
-            var viewModel = mapper.Map<List<EnemyViewModel>>(model);
+            var viewModel = mapper.Map<List<EnemyFormViewModel>>(model);
             TempData["SearchName"] = searchName;
             return View(viewModel);
         }
@@ -74,8 +74,24 @@ namespace GloomManager.Web.Controllers
             if (!ModelState.IsValid)
                 return View(model);
             var domain = mapper.Map<Enemy>(model.Enemy);
+            if (!NameLevelElitenessIsUnique(domain))
+            {
+                TempData["AlertMessage"] = "Name/Level/Eliteness combination is not unique.";
+                return View(model);
+            }
             enemyManager.Add(domain);
-            return View("FullIndex", "");
+            TempData["AlertMessage"] = "Enemy added!";
+            return RedirectToAction("FullIndex");
+        }
+
+        private bool NameLevelElitenessIsUnique(Enemy proposedEnemy)
+        {
+            var allEnemies = enemyManager.GetAll();
+            var existingEnemy = allEnemies.FirstOrDefault(e => 
+                e.Name == proposedEnemy.Name &&
+                e.Level == proposedEnemy.Level &&
+                e.Eliteness == proposedEnemy.Eliteness);
+            return existingEnemy is null;
         }
 
         [HttpGet]

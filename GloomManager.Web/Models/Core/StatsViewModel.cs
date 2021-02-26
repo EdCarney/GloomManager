@@ -21,7 +21,7 @@ namespace GloomManager.Web.Models
         public int BaseAttack { get; set; }
 
         [Display(Name = "Base Range")]
-        [Range(1, 50)]
+        [Range(0, 50)]
         public int BaseRange { get; set; }
     }
 }

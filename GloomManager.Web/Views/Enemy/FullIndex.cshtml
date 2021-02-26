@@ -1,0 +1,84 @@
+@model IEnumerable<GloomManager.Web.Models.EnemyFormViewModel>
+
+@{
+    ViewData["Title"] = "Detailed Index";
+}
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success w-75" role="alert">
+        @TempData["AlertMessage"]
+    </div>
+}
+
+<h1>Detailed Enemy Index</h1>
+
+<partial name="_SearchBar" model='@(TempData["SearchName"] ?? "")' />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Enemy.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enemy.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enemy.Level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enemy.Eliteness)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enemy.Stats.TotalHealth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enemy.Stats.BaseAttack)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enemy.Stats.BaseMovement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enemy.Stats.BaseRange)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Enemy.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Enemy.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Enemy.Level)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Enemy.Eliteness)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Enemy.Stats.TotalHealth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Enemy.Stats.BaseAttack)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Enemy.Stats.BaseMovement)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Enemy.Stats.BaseRange)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.Enemy.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.Enemy.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.Enemy.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

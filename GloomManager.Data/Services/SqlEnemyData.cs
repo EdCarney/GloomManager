@@ -46,9 +46,10 @@ namespace GloomManager.Data.Services
 
         public IEnumerable<Enemy> GetEnemiesByName(string name)
         {
-            return from e in table
+            return (from e in table
                    where e.Name.ToLower().Contains(name.ToLower())
-                   select e;
+                   select e)
+                   .Include(e => e.BaseStats);
         }
 
         public Enemy GetEnemyByNameElitenessLevel(string name, EnemyEliteness eliteness, int level)
