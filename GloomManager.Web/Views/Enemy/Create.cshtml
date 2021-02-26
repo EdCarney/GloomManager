@@ -4,87 +4,79 @@
     ViewData["Title"] = "Create Enemy";
 }
 
-<!DOCTYPE html>
-
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-
-<body>
-
-    <h4>Create Enemy</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create">
-                @Html.AntiForgeryToken()
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                <div class="form-group">
-                    <label asp-for="Enemy.Name" class="control-label"></label>
-                    <input asp-for="Enemy.Name" class="form-control" />
-                    <span asp-validation-for="Enemy.Name" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Enemy.Level" class="control-label"></label>
-                    <input asp-for="Enemy.Level" class="form-control" />
-                    <span asp-validation-for="Enemy.Level" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Enemy.Eliteness" class="control-label"></label>
-                    <select asp-for="Enemy.Eliteness"
-                        asp-items="@Html.GetEnumSelectList<GloomManager.Core.EnemyEliteness>()"
-                        class="form-control"></select>
-                    <span asp-validation-for="Enemy.Eliteness" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Enemy.Type" class="control-label"></label>
-                    <select asp-for="Enemy.Type" asp-items="@Html.GetEnumSelectList<GloomManager.Core.EnemyType>()"
-                        class="form-control"></select>
-                    <span asp-validation-for="Enemy.Type" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Enemy.Stats.TotalHealth" class="control-label"></label>
-                    <input asp-for="Enemy.Stats.TotalHealth" class="form-control" />
-                    <span asp-validation-for="Enemy.Stats.TotalHealth" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Enemy.Stats.BaseAttack" class="control-label"></label>
-                    <input asp-for="Enemy.Stats.BaseAttack" class="form-control" />
-                    <span asp-validation-for="Enemy.Stats.BaseAttack" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Enemy.Stats.BaseMovement" class="control-label"></label>
-                    <input asp-for="Enemy.Stats.BaseMovement" class="form-control" />
-                    <span asp-validation-for="Enemy.Stats.BaseMovement" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Enemy.Stats.BaseRange" class="control-label"></label>
-                    <input asp-for="Enemy.Stats.BaseRange" class="form-control" />
-                    <span asp-validation-for="Enemy.Stats.BaseRange" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
-        </div>
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-danger w-75" role="alert">
+        @TempData["AlertMessage"]
     </div>
+}
 
-    <div>
-        <a asp-action="FullIndex">Back to List</a>
+<h4>Create Enemy</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Enemy.Name" class="control-label"></label>
+                <input asp-for="Enemy.Name" class="form-control" />
+                <span asp-validation-for="Enemy.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Enemy.Level" class="control-label"></label>
+                <input asp-for="Enemy.Level" class="form-control" />
+                <span asp-validation-for="Enemy.Level" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Enemy.Eliteness" class="control-label"></label>
+                <select asp-for="Enemy.Eliteness"
+                    asp-items="@Html.GetEnumSelectList<GloomManager.Core.EnemyEliteness>()"
+                    class="form-control"></select>
+                <span asp-validation-for="Enemy.Eliteness" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Enemy.Type" class="control-label"></label>
+                <select asp-for="Enemy.Type" asp-items="@Html.GetEnumSelectList<GloomManager.Core.EnemyType>()"
+                    class="form-control"></select>
+                <span asp-validation-for="Enemy.Type" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Enemy.Stats.TotalHealth" class="control-label"></label>
+                <input asp-for="Enemy.Stats.TotalHealth" class="form-control" />
+                <span asp-validation-for="Enemy.Stats.TotalHealth" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Enemy.Stats.BaseAttack" class="control-label"></label>
+                <input asp-for="Enemy.Stats.BaseAttack" class="form-control" />
+                <span asp-validation-for="Enemy.Stats.BaseAttack" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Enemy.Stats.BaseMovement" class="control-label"></label>
+                <input asp-for="Enemy.Stats.BaseMovement" class="form-control" />
+                <span asp-validation-for="Enemy.Stats.BaseMovement" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Enemy.Stats.BaseRange" class="control-label"></label>
+                <input asp-for="Enemy.Stats.BaseRange" class="form-control" />
+                <span asp-validation-for="Enemy.Stats.BaseRange" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
+</div>
 
-</body>
-
-</html>
+<div>
+    <a asp-action="FullIndex">Back to List</a>
+</div>
