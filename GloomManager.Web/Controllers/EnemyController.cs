@@ -26,15 +26,7 @@ namespace GloomManager.Web.Controllers
         public IActionResult UniqueIndex(string searchName)
         {
             var model = enemyManager.GetUniqueEnemiesByName(searchName ?? "");
-            var viewModel = new List<EnemyFormViewModel>();
-            foreach (var m in model)
-            {
-                viewModel.Add(new EnemyFormViewModel
-                {
-                    Id = m.Id,
-                    Enemy = mapper.Map<EnemyViewModel>(m)
-                });
-            }
+            var viewModel = mapper.Map<List<EnemyFormViewModel>>(model);
             TempData["SearchName"] = searchName;
             return View(viewModel);
         }

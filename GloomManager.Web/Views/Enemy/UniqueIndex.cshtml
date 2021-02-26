@@ -25,9 +25,8 @@
                     @Html.DisplayFor(modelItem => item.Enemy.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { name = item.Enemy.Name }) |
-                    @Html.ActionLink("Details", "Details", new { name = item.Enemy.Name }) |
-                    @Html.ActionLink("Delete", "Delete", new { name = item.Enemy.Name })
+                    @Html.ActionLink("Details", "Details",
+                        new { name = item.Enemy.Name, level = item.Enemy.Level, eliteness = item.Enemy.Eliteness })
                 </td>
             </tr>
         }

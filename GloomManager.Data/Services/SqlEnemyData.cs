@@ -83,8 +83,13 @@ namespace GloomManager.Data.Services
             var enemies = GetEnemiesByName(name);
             var uniqueEnemies = new List<Enemy>();
             foreach (var enemy in enemies)
-                if (uniqueEnemies.Find(e => e.Name == enemy.Name) == null)
+            {
+                var currEnemy = uniqueEnemies.Find(e => e.Name == enemy.Name);
+                if (currEnemy is null)
                     uniqueEnemies.Add(enemy);
+                else if (enemy.Level < currEnemy.Level || enemy.Eliteness < currEnemy.Eliteness)
+                    currEnemy = enemy;
+            }
             return uniqueEnemies;
         }
 
