@@ -15,7 +15,7 @@ namespace GloomManager.Core
         Cultist,
         Spirit,
         Undead,
-        Demond,
+        Demon,
         Animal,
         Boss,
         Other
