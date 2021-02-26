@@ -74,9 +74,8 @@
                     @Html.DisplayFor(modelItem => item.Enemy.Stats.BaseRange)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.Enemy.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.Enemy.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.Enemy.PrimaryKey */ })
+                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> &nbsp;
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
         }
