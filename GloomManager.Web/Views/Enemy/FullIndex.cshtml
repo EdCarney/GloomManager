@@ -31,16 +31,16 @@
                 @Html.DisplayNameFor(model => model.Enemy.Eliteness)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Enemy.Stats.TotalHealth)
+                @Html.DisplayNameFor(model => model.Enemy.BaseStats.TotalHealth)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Enemy.Stats.BaseAttack)
+                @Html.DisplayNameFor(model => model.Enemy.BaseStats.BaseAttack)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Enemy.Stats.BaseMovement)
+                @Html.DisplayNameFor(model => model.Enemy.BaseStats.BaseMovement)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Enemy.Stats.BaseRange)
+                @Html.DisplayNameFor(model => model.Enemy.BaseStats.BaseRange)
             </th>
             <th></th>
         </tr>
@@ -62,19 +62,19 @@
                     @Html.DisplayFor(modelItem => item.Enemy.Eliteness)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Enemy.Stats.TotalHealth)
+                    @Html.DisplayFor(modelItem => item.Enemy.BaseStats.TotalHealth)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Enemy.Stats.BaseAttack)
+                    @Html.DisplayFor(modelItem => item.Enemy.BaseStats.BaseAttack)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Enemy.Stats.BaseMovement)
+                    @Html.DisplayFor(modelItem => item.Enemy.BaseStats.BaseMovement)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Enemy.Stats.BaseRange)
+                    @Html.DisplayFor(modelItem => item.Enemy.BaseStats.BaseRange)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> &nbsp;
+                    <a asp-action="Update" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> &nbsp;
                     <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>

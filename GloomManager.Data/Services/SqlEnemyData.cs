@@ -65,7 +65,10 @@ namespace GloomManager.Data.Services
 
         public Enemy GetOne(int id)
         {
-            return table.Find(id);
+            return table
+                .Include(e => e.BaseStats)
+                .Include(e => e.SpecialAbilities)
+                .SingleOrDefault(e => e.Id == id);
         }
 
         public IEnumerable<Enemy> GetUniqueEnemies()

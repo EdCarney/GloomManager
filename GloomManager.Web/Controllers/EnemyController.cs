@@ -7,18 +7,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GloomManager.Web.Controllers
 {
     public class EnemyController : Controller
     {
         private readonly IEnemyManager enemyManager;
+        private readonly IHtmlHelper htmlHelper;
         private readonly IMapper mapper;
 
         public EnemyController(IEnemyManager enemyManager,
+                               IHtmlHelper htmlHelper,
                                IMapper mapper)
         {
             this.enemyManager = enemyManager;
+            this.htmlHelper = htmlHelper;
             this.mapper = mapper;
         }
 
@@ -41,10 +45,9 @@ namespace GloomManager.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(string name, int level = 0, EnemyElitenessViewModel eliteness = 0)
+        public IActionResult Details(string name, int level = 0, EnemyEliteness eliteness = 0)
         {
-            var elitenessModel = mapper.Map<EnemyEliteness>(eliteness);
-            var model = enemyManager.GetEnemyByNameElitenessLevel(name, elitenessModel, level);
+            var model = enemyManager.GetEnemyByNameElitenessLevel(name, eliteness, level);
             if (model is null)
                 return View("NotFound");
             var viewModel = mapper.Map<EnemyFormViewModel>(model);
@@ -53,19 +56,30 @@ namespace GloomManager.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Update(int id = -1)
         {
-            var model = new EnemyFormViewModel { Id = -1 };
+           EnemyFormViewModel model;
+            if (id < 0) // creating new
+            {
+                model = new EnemyFormViewModel { Id = id };
+            }
+            else // updating existing
+            {
+                var domain = enemyManager.GetOne(id);
+                model = mapper.Map<EnemyFormViewModel>(domain);
+            }
+            model.EnemyTypeOptions = htmlHelper.GetEnumSelectList<EnemyType>();
+            model.EnemyElitenessesOptions = htmlHelper.GetEnumSelectList<EnemyEliteness>();
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(EnemyFormViewModel model)
+        public IActionResult Update(EnemyFormViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
-            var domain = mapper.Map<Enemy>(model.Enemy);
+            Enemy domain = model.Enemy;
             if (!NameLevelElitenessIsUnique(domain))
             {
                 TempData["AlertMessage"] = "Name/Level/Eliteness combination is not unique.";
@@ -86,22 +100,30 @@ namespace GloomManager.Web.Controllers
             return existingEnemy is null;
         }
 
-        [HttpGet]
-        public IActionResult Update(int id = -1)
-        {
-            var model = new EnemyFormViewModel { Id = id };
-            model.Enemy = mapper.Map<EnemyViewModel>(enemyManager.GetOne(id));
-            return View(model);
+        // [HttpGet]
+        // public IActionResult Update(int id = -1)
+        // {
+        //     EnemyFormViewModel model;
+        //     if (id < 0) // creating new
+        //     {
+        //         model = new EnemyFormViewModel { Id = id };
+        //     }
+        //     else // updating existing
+        //     {
+        //         var domain = enemyManager.GetOne(id);
+        //         model = mapper.Map<EnemyFormViewModel>(domain);
+        //     }
 
-        }
+        //     return View(model);
+        // }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Update(EnemyFormViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
-            return UniqueIndex("");
-        }
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public IActionResult Update(EnemyFormViewModel model)
+        // {
+        //     if (!ModelState.IsValid)
+        //         return View(model);
+        //     return UniqueIndex("");
+        // }
     }
 }

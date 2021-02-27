@@ -22,8 +22,11 @@ namespace GloomManager.Core
         public EnemyEliteness Eliteness { get; set; }
 
         [Required]
+        [Display(Name = "Enemy Type")]
+        [MaxLength(100)]
         public EnemyType Type { get; set; }
 
+        [Display(Name = "Special Abilities")]
         public List<SpecialAbility> SpecialAbilities { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace GloomManager.Web.Profiles
     {
         public EnemyFormProfile()
         {
+            CreateMap<Enemy, Enemy>();
             CreateMap<Enemy, EnemyFormViewModel>()
                 .ForMember(dest => dest.Enemy,
                            opt => opt.MapFrom(src => src))

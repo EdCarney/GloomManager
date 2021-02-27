@@ -1,7 +1,7 @@
 @model GloomManager.Web.Models.EnemyFormViewModel;
 
 @{
-    ViewData["Title"] = "Create Enemy";
+    ViewData["Title"] = Model.IsUpdate ? "Update Enemy" : "Create Enemy";
 }
 
 @if (TempData["AlertMessage"] != null)
@@ -10,8 +10,14 @@
         @TempData["AlertMessage"]
     </div>
 }
-
-<h4>Create Enemy</h4>
+@if (Model.IsUpdate)
+{
+    <h4>Update Enemy</h4>    
+}
+else
+{
+    <h4>Create Enemy</h4>
+}
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -34,49 +40,47 @@
             <div class="form-group">
                 <label asp-for="Enemy.Eliteness" class="control-label"></label>
                 <select asp-for="Enemy.Eliteness"
-                    asp-items="@Html.GetEnumSelectList<GloomManager.Core.EnemyEliteness>()"
+                    asp-items="Model.EnemyElitenessesOptions"
                     class="form-control"></select>
                 <span asp-validation-for="Enemy.Eliteness" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Enemy.Type" class="control-label"></label>
-                <select asp-for="Enemy.Type" asp-items="@Html.GetEnumSelectList<GloomManager.Core.EnemyType>()"
+                <select asp-for="Enemy.Type"
+                    asp-items='Model.EnemyTypeOptions'
                     class="form-control"></select>
                 <span asp-validation-for="Enemy.Type" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Enemy.Stats.TotalHealth" class="control-label"></label>
-                <input asp-for="Enemy.Stats.TotalHealth" class="form-control" />
-                <span asp-validation-for="Enemy.Stats.TotalHealth" class="text-danger"></span>
+                <label asp-for="Enemy.BaseStats.TotalHealth" class="control-label"></label>
+                <input asp-for="Enemy.BaseStats.TotalHealth" class="form-control" />
+                <span asp-validation-for="Enemy.BaseStats.TotalHealth" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Enemy.Stats.BaseAttack" class="control-label"></label>
-                <input asp-for="Enemy.Stats.BaseAttack" class="form-control" />
-                <span asp-validation-for="Enemy.Stats.BaseAttack" class="text-danger"></span>
+                <label asp-for="Enemy.BaseStats.BaseAttack" class="control-label"></label>
+                <input asp-for="Enemy.BaseStats.BaseAttack" class="form-control" />
+                <span asp-validation-for="Enemy.BaseStats.BaseAttack" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Enemy.Stats.BaseMovement" class="control-label"></label>
-                <input asp-for="Enemy.Stats.BaseMovement" class="form-control" />
-                <span asp-validation-for="Enemy.Stats.BaseMovement" class="text-danger"></span>
+                <label asp-for="Enemy.BaseStats.BaseMovement" class="control-label"></label>
+                <input asp-for="Enemy.BaseStats.BaseMovement" class="form-control" />
+                <span asp-validation-for="Enemy.BaseStats.BaseMovement" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Enemy.Stats.BaseRange" class="control-label"></label>
-                <input asp-for="Enemy.Stats.BaseRange" class="form-control" />
-                <span asp-validation-for="Enemy.Stats.BaseRange" class="text-danger"></span>
+                <label asp-for="Enemy.BaseStats.BaseRange" class="control-label"></label>
+                <input asp-for="Enemy.BaseStats.BaseRange" class="form-control" />
+                <span asp-validation-for="Enemy.BaseStats.BaseRange" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value='@(Model.IsUpdate ? "Update" : "Create")' class="btn btn-primary" />
+                <a asp-action="FullIndex" class="btn btn-info">Back to List</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="FullIndex">Back to List</a>
 </div>

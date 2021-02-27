@@ -16,7 +16,7 @@
 
 @using (Html.BeginForm(FormMethod.Get))
 {
-    @Html.HiddenFor(model => model.Enemy.Name)
+    @Html.Hidden("name", Model.Enemy.Name, new { @id = "name" })
 
     <div class="form-row mb-3">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -30,16 +30,16 @@
 
         <div class="input-group col-md-4">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Level</span>
+                <span class="input-group-text">Level</span>
             </div>
-            <input type="number" name="Level" value="@Model.Enemy.Level" class="form-control" aria-describedby="basic-addon1">
+            <input type="number" name="Level" value="@Model.Enemy.Level" class="form-control">
         </div>
 
         <input type="submit" value="Search" class="btn btn-primary" />
     </div>
 }
 
-<partial name="_StatDetails" model="Model.Enemy" />
+<partial name="_StatDetails" model="Model" />
 
 <br />
 
