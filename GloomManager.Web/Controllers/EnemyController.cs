@@ -79,19 +79,25 @@ namespace GloomManager.Web.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            var domain = model.Enemy;
-            if (!model.IsUpdate && !NameLevelElitenessIsUnique(domain))
-            {
-                TempData["AlertMessage"] = "Name/Level/Eliteness combination is not unique.";
-                model.EnemyTypeOptions = _htmlHelper.GetEnumSelectList<EnemyType>();
-                model.EnemyElitenessesOptions = _htmlHelper.GetEnumSelectList<EnemyEliteness>();
-                return View(model);
-            }
 
             if (model.IsUpdate)
-                _enemyManager.Update(domain);
+            {
+                var domain = _enemyManager.GetOne(model.Enemy.Id);
+                _mapper.Map(model, domain);
+                _enemyManager.Save(domain);
+            }
             else
-                _enemyManager.Add(domain);
+            {
+                if (!NameLevelElitenessIsUnique(model.Enemy))
+                {
+                    TempData["AlertMessage"] = "Name/Level/Eliteness combination is not unique.";
+                    model.EnemyTypeOptions = _htmlHelper.GetEnumSelectList<EnemyType>();
+                    model.EnemyElitenessesOptions = _htmlHelper.GetEnumSelectList<EnemyEliteness>();
+                    return View(model);
+                }
+                _enemyManager.Add(model.Enemy);
+            }   
+
             TempData["AlertMessage"] = model.IsUpdate ? "Enemy updated!" : "Enemy added!";
             return RedirectToAction("FullIndex");
         }

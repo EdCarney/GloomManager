@@ -28,8 +28,7 @@ namespace GloomManager.Web
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IEnemyManager, SqlEnemyData>();
             services.AddDbContext<GloomManagerDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("GloomManagerDb"))
-                       .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+                options.UseSqlServer(Configuration.GetConnectionString("GloomManagerDbLocal")));
             services.AddControllersWithViews();
         }
 

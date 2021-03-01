@@ -19,11 +19,6 @@ namespace GloomManager.Data.Services
             throw new NotImplementedException();
         }
 
-        public int Update(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
         public int Delete(int id, byte[] timeStamp)
         {
             throw new NotImplementedException();

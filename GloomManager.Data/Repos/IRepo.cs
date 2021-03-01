@@ -11,7 +11,6 @@ namespace GloomManager.Data.Repos
         int Add(T entity);
         int AddRange(IEnumerable<T> entities);
         int Save(T entity);
-        int Update(T entity);
         int Delete(int id, byte[] timeStamp);
         int Delete(T entity);
         T GetOne(int id);
