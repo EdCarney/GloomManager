@@ -10,11 +10,6 @@ namespace GloomManager.Web.Models
     {
         public Enemy Enemy { get => Entity; set => Entity = value; }
 
-        // public string ActionName
-        // {
-        //     get => IsUpdate ? nameof(EnemyController.Update) : nameof(EnemyController.Create);
-        // }
-
         public IEnumerable<SelectListItem> EnemyElitenessesOptions { get; set; }
 
         public IEnumerable<SelectListItem> EnemyTypeOptions { get; set; }

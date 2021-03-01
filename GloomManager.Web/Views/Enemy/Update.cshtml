@@ -21,8 +21,9 @@ else
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Update">
             @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Enemy.Id)
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">

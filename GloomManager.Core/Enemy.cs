@@ -23,7 +23,6 @@ namespace GloomManager.Core
 
         [Required]
         [Display(Name = "Enemy Type")]
-        [MaxLength(100)]
         public EnemyType Type { get; set; }
 
         [Display(Name = "Special Abilities")]

@@ -13,24 +13,24 @@ namespace GloomManager.Web.Controllers
 {
     public class EnemyController : Controller
     {
-        private readonly IEnemyManager enemyManager;
-        private readonly IHtmlHelper htmlHelper;
-        private readonly IMapper mapper;
+        private readonly IEnemyManager _enemyManager;
+        private readonly IHtmlHelper _htmlHelper;
+        private readonly IMapper _mapper;
 
         public EnemyController(IEnemyManager enemyManager,
                                IHtmlHelper htmlHelper,
                                IMapper mapper)
         {
-            this.enemyManager = enemyManager;
-            this.htmlHelper = htmlHelper;
-            this.mapper = mapper;
+            this._enemyManager = enemyManager;
+            this._htmlHelper = htmlHelper;
+            this._mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult UniqueIndex(string searchName)
         {
-            var model = enemyManager.GetUniqueEnemiesByName(searchName ?? "");
-            var viewModel = mapper.Map<List<EnemyFormViewModel>>(model);
+            var model = _enemyManager.GetUniqueEnemiesByName(searchName ?? "");
+            var viewModel = _mapper.Map<List<EnemyFormViewModel>>(model);
             TempData["SearchName"] = searchName;
             return View(viewModel);
         }
@@ -38,8 +38,8 @@ namespace GloomManager.Web.Controllers
         [HttpGet]
         public IActionResult FullIndex(string searchName = "")
         {
-            var model = enemyManager.GetEnemiesByName(searchName ?? "");
-            var viewModel = mapper.Map<List<EnemyFormViewModel>>(model);
+            var model = _enemyManager.GetEnemiesByName(searchName ?? "");
+            var viewModel = _mapper.Map<List<EnemyFormViewModel>>(model);
             TempData["SearchName"] = searchName;
             return View(viewModel);
         }
@@ -47,10 +47,10 @@ namespace GloomManager.Web.Controllers
         [HttpGet]
         public IActionResult Details(string name, int level = 0, EnemyEliteness eliteness = 0)
         {
-            var model = enemyManager.GetEnemyByNameElitenessLevel(name, eliteness, level);
+            var model = _enemyManager.GetEnemyByNameElitenessLevel(name, eliteness, level);
             if (model is null)
                 return View("NotFound");
-            var viewModel = mapper.Map<EnemyFormViewModel>(model);
+            var viewModel = _mapper.Map<EnemyFormViewModel>(model);
 
             return View(viewModel);
         }
@@ -65,11 +65,11 @@ namespace GloomManager.Web.Controllers
             }
             else // updating existing
             {
-                var domain = enemyManager.GetOne(id);
-                model = mapper.Map<EnemyFormViewModel>(domain);
+                var domain = _enemyManager.GetOne(id);
+                model = _mapper.Map<EnemyFormViewModel>(domain);
             }
-            model.EnemyTypeOptions = htmlHelper.GetEnumSelectList<EnemyType>();
-            model.EnemyElitenessesOptions = htmlHelper.GetEnumSelectList<EnemyEliteness>();
+            model.EnemyTypeOptions = _htmlHelper.GetEnumSelectList<EnemyType>();
+            model.EnemyElitenessesOptions = _htmlHelper.GetEnumSelectList<EnemyEliteness>();
             return View(model);
         }
 
@@ -79,51 +79,31 @@ namespace GloomManager.Web.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            Enemy domain = model.Enemy;
-            if (!NameLevelElitenessIsUnique(domain))
+            var domain = model.Enemy;
+            if (!model.IsUpdate && !NameLevelElitenessIsUnique(domain))
             {
                 TempData["AlertMessage"] = "Name/Level/Eliteness combination is not unique.";
+                model.EnemyTypeOptions = _htmlHelper.GetEnumSelectList<EnemyType>();
+                model.EnemyElitenessesOptions = _htmlHelper.GetEnumSelectList<EnemyEliteness>();
                 return View(model);
             }
-            enemyManager.Add(domain);
-            TempData["AlertMessage"] = "Enemy added!";
+
+            if (model.IsUpdate)
+                _enemyManager.Update(domain);
+            else
+                _enemyManager.Add(domain);
+            TempData["AlertMessage"] = model.IsUpdate ? "Enemy updated!" : "Enemy added!";
             return RedirectToAction("FullIndex");
         }
 
         private bool NameLevelElitenessIsUnique(Enemy proposedEnemy)
         {
-            var allEnemies = enemyManager.GetAll();
+            var allEnemies = _enemyManager.GetAll();
             var existingEnemy = allEnemies.FirstOrDefault(e => 
                 e.Name == proposedEnemy.Name &&
                 e.Level == proposedEnemy.Level &&
                 e.Eliteness == proposedEnemy.Eliteness);
             return existingEnemy is null;
         }
-
-        // [HttpGet]
-        // public IActionResult Update(int id = -1)
-        // {
-        //     EnemyFormViewModel model;
-        //     if (id < 0) // creating new
-        //     {
-        //         model = new EnemyFormViewModel { Id = id };
-        //     }
-        //     else // updating existing
-        //     {
-        //         var domain = enemyManager.GetOne(id);
-        //         model = mapper.Map<EnemyFormViewModel>(domain);
-        //     }
-
-        //     return View(model);
-        // }
-
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public IActionResult Update(EnemyFormViewModel model)
-        // {
-        //     if (!ModelState.IsValid)
-        //         return View(model);
-        //     return UniqueIndex("");
-        // }
     }
 }

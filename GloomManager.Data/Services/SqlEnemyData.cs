@@ -28,6 +28,14 @@ namespace GloomManager.Data.Services
             return SaveChanges();
         }
 
+        public int Update(Enemy entity)
+        {
+            var enemy = db.Enemies.FirstOrDefault(e => e.Id == entity.Id);
+            enemy = entity;
+            db.Enemies.Update(enemy);
+            return SaveChanges();
+        }
+
         public int Delete(int id, byte[] timeStamp)
         {
             return Delete(new Enemy { Id = id, Timestamp = timeStamp });

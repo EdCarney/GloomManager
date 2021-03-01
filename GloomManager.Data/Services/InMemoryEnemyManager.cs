@@ -93,6 +93,15 @@ namespace GloomManager.Data.Services
             return entities.Count();
         }
 
+        public int Update(Enemy entity)
+        {
+            var update = enemies.FirstOrDefault(e => e.Id == entity.Id);
+            if (update is null)
+                return 0;
+            update = entity;
+            return 1;
+        }
+
         public int Delete(int id, byte[] timeStamp)
         {
             return Delete(new Enemy { Id = id, Timestamp = timeStamp });
