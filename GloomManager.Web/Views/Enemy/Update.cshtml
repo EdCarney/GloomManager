@@ -24,8 +24,8 @@ else
         <form asp-action="Update">
 
             @*
-                add identifiers if this is an update; note
-                this will break create validation if included
+        add identifiers if this is an update; note
+        this will break create validation if included
             *@
             @if (Model.IsUpdate)
             {
@@ -72,15 +72,15 @@ else
             </div>
 
             <div class="form-group">
-                <label asp-for="Enemy.BaseStats.BaseAttack" class="control-label"></label>
-                <input asp-for="Enemy.BaseStats.BaseAttack" class="form-control" />
-                <span asp-validation-for="Enemy.BaseStats.BaseAttack" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
                 <label asp-for="Enemy.BaseStats.BaseMovement" class="control-label"></label>
                 <input asp-for="Enemy.BaseStats.BaseMovement" class="form-control" />
                 <span asp-validation-for="Enemy.BaseStats.BaseMovement" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Enemy.BaseStats.BaseAttack" class="control-label"></label>
+                <input asp-for="Enemy.BaseStats.BaseAttack" class="form-control" />
+                <span asp-validation-for="Enemy.BaseStats.BaseAttack" class="text-danger"></span>
             </div>
 
             <div class="form-group">

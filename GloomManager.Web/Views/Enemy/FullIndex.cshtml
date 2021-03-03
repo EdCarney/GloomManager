@@ -74,8 +74,8 @@
                     @Html.DisplayFor(modelItem => item.Enemy.BaseStats.BaseRange)
                 </td>
                 <td>
-                    <a asp-action="Update" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> &nbsp;
-                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                    <a title="Update Enemy" asp-action="Update" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> &nbsp;
+                    <a title="Delete Enemy" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
         }

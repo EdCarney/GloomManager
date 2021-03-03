@@ -75,34 +75,60 @@ namespace GloomManager.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(EnemyFormViewModel model)
+        public IActionResult Update(EnemyFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
-                model.EnemyTypeOptions = _htmlHelper.GetEnumSelectList<EnemyType>();
-                model.EnemyElitenessesOptions = _htmlHelper.GetEnumSelectList<EnemyEliteness>();
-                return View(model);
+                viewModel.EnemyTypeOptions = _htmlHelper.GetEnumSelectList<EnemyType>();
+                viewModel.EnemyElitenessesOptions = _htmlHelper.GetEnumSelectList<EnemyEliteness>();
+                return View(viewModel);
             }
 
-            if (model.IsUpdate)
+            if (viewModel.IsUpdate)
             {
-                var domain = _enemyManager.GetOne(model.Enemy.Id);
-                _mapper.Map(model, domain);
+                var domain = _enemyManager.GetOne(viewModel.Enemy.Id);
+                _mapper.Map(viewModel, domain);
                 _enemyManager.Save(domain);
             }
             else
             {
-                if (!NameLevelElitenessIsUnique(model.Enemy))
+                if (!NameLevelElitenessIsUnique(viewModel.Enemy))
                 {
                     TempData["AlertMessage"] = "Name/Level/Eliteness combination is not unique.";
-                    model.EnemyTypeOptions = _htmlHelper.GetEnumSelectList<EnemyType>();
-                    model.EnemyElitenessesOptions = _htmlHelper.GetEnumSelectList<EnemyEliteness>();
-                    return View(model);
+                    viewModel.EnemyTypeOptions = _htmlHelper.GetEnumSelectList<EnemyType>();
+                    viewModel.EnemyElitenessesOptions = _htmlHelper.GetEnumSelectList<EnemyEliteness>();
+                    return View(viewModel);
                 }
-                _enemyManager.Add(model.Enemy);
-            }   
+                _enemyManager.Add(viewModel.Enemy);
+            }
 
-            TempData["AlertMessage"] = model.IsUpdate ? "Enemy updated!" : "Enemy added!";
+            TempData["AlertMessage"] = viewModel.IsUpdate
+                ? $"{viewModel.Enemy.Name} updated!"
+                : $"{viewModel.Enemy.Name} added!";
+
+            return RedirectToAction("FullIndex");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var model = _enemyManager.GetOne(id);
+            if (model is null)
+                return View("NotFound");
+            var viewModel = _mapper.Map<EnemyFormViewModel>(model);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(EnemyFormViewModel viewModel)
+        {
+            var domain = _enemyManager.GetOne(viewModel.Id);
+            if (domain is null)
+                return View("NotFound");
+            
+             _enemyManager.Delete(domain);
+            TempData["AlertMessage"] = $"{domain.Name} Deleted!";
             return RedirectToAction("FullIndex");
         }
 

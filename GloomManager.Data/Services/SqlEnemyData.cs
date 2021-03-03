@@ -36,7 +36,7 @@ namespace GloomManager.Data.Services
         public int Delete(Enemy entity)
         {
             db.Entry(entity).State = EntityState.Deleted;
-            return Save(entity);
+            return SaveChanges();
         }
 
         public IEnumerable<Enemy> GetAll()
