@@ -78,7 +78,11 @@ namespace GloomManager.Web.Controllers
         public IActionResult Update(EnemyFormViewModel model)
         {
             if (!ModelState.IsValid)
+            {
+                model.EnemyTypeOptions = _htmlHelper.GetEnumSelectList<EnemyType>();
+                model.EnemyElitenessesOptions = _htmlHelper.GetEnumSelectList<EnemyEliteness>();
                 return View(model);
+            }
 
             if (model.IsUpdate)
             {

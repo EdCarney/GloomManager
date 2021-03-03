@@ -9,7 +9,9 @@ namespace GloomManager.Core
 {
     public class Enemy : EntityBase
     {
+        [Required]
         public Stats BaseStats { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }

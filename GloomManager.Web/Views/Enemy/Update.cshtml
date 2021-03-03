@@ -22,11 +22,19 @@ else
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Update">
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(m => m.Enemy.Id)
-            @Html.HiddenFor(m => m.Enemy.Timestamp)
-            @Html.HiddenFor(m => m.Enemy.BaseStats.Id)
-            @Html.HiddenFor(m => m.Enemy.BaseStats.Timestamp)
+
+            @*
+                add identifiers if this is an update; note
+                this will break create validation if included
+            *@
+            @if (Model.IsUpdate)
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Enemy.Id)
+                @Html.HiddenFor(m => m.Enemy.Timestamp)
+                @Html.HiddenFor(m => m.Enemy.BaseStats.Id)
+            }
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
