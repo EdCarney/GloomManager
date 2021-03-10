@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GloomManager.Core
+namespace GloomManager.Core.Enemy
 {
     public enum EnemyType
     {

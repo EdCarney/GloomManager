@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GloomManager.Core;
+using GloomManager.Core.Enemy;
 using Microsoft.EntityFrameworkCore;
 
 namespace GloomManager.Data.Services

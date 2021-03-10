@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 using GloomManager.Web.Controllers;
-using GloomManager.Core;
+using GloomManager.Core.Enemy;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GloomManager.Web.Models

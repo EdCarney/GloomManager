@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GloomManager.Core
+namespace GloomManager.Core.Enemy
 {
     public class Stats : EntityBase
     {

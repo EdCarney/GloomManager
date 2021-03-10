@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using GloomManager.Core;
+using GloomManager.Core.Enemy;
 using Microsoft.EntityFrameworkCore;
 
 namespace GloomManager.Data.Services

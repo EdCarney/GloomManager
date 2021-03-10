@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using GloomManager.Data.Services;
 using GloomManager.Web.Models;
-using GloomManager.Core;
+using GloomManager.Core.Enemy;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
