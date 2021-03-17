@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using GloomManager.Core.Enemy;
+using GloomManager.Core.User;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GloomManager.Data.Services
 {
-    public class GloomManagerDbContext : DbContext
+    public class GloomManagerDbContext : IdentityDbContext<AppUser>
     {
         public GloomManagerDbContext(DbContextOptions<GloomManagerDbContext> options)
             : base(options)

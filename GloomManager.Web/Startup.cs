@@ -2,6 +2,7 @@ using GloomManager.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +30,12 @@ namespace GloomManager.Web
             services.AddScoped<IEnemyManager, SqlEnemyData>();
             services.AddDbContext<GloomManagerDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("GloomManagerDbLocal")));
+
+            // adding identity
+            services.AddDefaultIdentity<IdentityUser>(options =>
+                options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<GloomManagerDbContext>();
+
             services.AddControllersWithViews();
         }
 
